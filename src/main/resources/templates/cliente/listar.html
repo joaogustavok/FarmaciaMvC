@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
+		Nenhum Medicamento Cadastrado
+	</div>
+	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
+	</div>
+	<div th:if="${not #lists.isEmpty(lista)}">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Bula</th>
+					<th>Quantidade</th>
+					<th>Preço</th>
+					<th>Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="medicamento:${lista}">
+					<td th:text="${medicamento.id}"></td>
+					<td th:text="${medicamento.nome}" > </td>
+					<td th:text="${medicamento.bula}"></td>
+					<td th:text="${medicamento.quantidade}"></td>
+					<td th:text="${medicamento.preco}"></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{/medicamento/editar(id=${medicamento.id})}">Editar</a>
+					<a class="btn btn-danger btn-sm" th:href="@{/medicamento/excluir(id=${medicamento.id})}">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</html>

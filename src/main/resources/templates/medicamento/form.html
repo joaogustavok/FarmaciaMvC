@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<p class="text-primary">Novo Medicamento</p>
+		</div>
+		<div class="card-body">
+			<form method="POST" th:object="${medicamento}" th:action="@{/medicamento/editar}">
+				<input type="hidden" th:field="*{id}"></input>
+				<div class="form-group mb-3">
+					<label for="nome">Nome:</label> <input
+						class="form-control" type="text" th:field="*{nome}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"> </div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="nome">Bula:</label> <input
+						class="form-control" type="text" th:field="*{bula}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('bula')}" th:errors="*{bula}"> </div>
+				</div>
+					<div class="form-group mb-3">
+					<label for="nome">Quantidade:</label> <input
+						class="form-control" type="number" th:field="*{quantidade}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"> </div>
+				</div>
+					<div class="form-group mb-3">
+					<label for="nome">Preco:</label> <input
+						class="form-control" type="number" th:field="*{preco}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"> </div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
+		</div>
+	</div>
+</div>
+</html>
