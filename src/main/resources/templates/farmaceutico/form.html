@@ -8,10 +8,10 @@
 	</div>
 	<div class="card">
 		<div class="card-header">
-			<p class="text-primary">Novo Cliente</p>
+			<p class="text-primary">Novo Farmacêutico</p>
 		</div>
 		<div class="card-body">
-			<form method="POST" th:object="${cliente}" th:action="@{/cliente/editar}">
+			<form method="POST" th:object="${farmaceutico}" th:action="@{/farmaceutico/editar}">
 				<input type="hidden" th:field="*{id}"></input>
 				<div class="form-group mb-3">
 					<label for="nome">Nome:</label> <input
@@ -29,9 +29,9 @@
 						<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> </div>
 				</div>
 				<div class="form-group mb-3">
-					<label for="nome">Receita:</label> <input
-						class="form-control" type="text" th:field="*{receita}" required></input>
-						<div class="text-danger" th:if="${#fields.hasErrors('receita')}" th:errors="*{receita}"> </div>
+					<label for="nome">CRM:</label> <input
+						class="form-control" type="text" th:field="*{crm}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('crm')}" th:errors="*{crm}"> </div>
 				</div>
 			
 				<button type="submit" class="btn btn-primary">Salvar</button>

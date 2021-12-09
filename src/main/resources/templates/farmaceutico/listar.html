@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <div layout:fragment="content">
 	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
-		Nenhum Cliente Cadastrado
+		Nenhum Farmacêutico Cadastrado
 	</div>
 	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
 	</div>
@@ -18,19 +18,19 @@
 					<th>Nome</th>
 					<th>Endereço</th>
 					<th>Email</th>
-					<th>Receita</th>
+					<th>CRM</th>
 					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cliente:${lista}">
-					<td th:text="${cliente.id}"></td>
-					<td th:text="${cliente.nome}" > </td>
-					<td th:text="${cliente.endereco}"></td>
-					<td th:text="${cliente.email}"></td>
-					<td th:text="${cliente.receita}"></td>
-					<td><a class="btn btn-primary btn-sm" th:href="@{/cliente/editar(id=${cliente.id})}">Editar</a>
-					<a class="btn btn-danger btn-sm" th:href="@{/cliente/excluir(id=${cliente.id})}">Excluir</a>
+				<tr th:each="farmaceutico:${lista}">
+					<td th:text="${farmaceutico.id}"></td>
+					<td th:text="${farmaceutico.nome}" > </td>
+					<td th:text="${farmaceutico.endereco}"></td>
+					<td th:text="${farmaceutico.email}"></td>
+					<td th:text="${farmaceutico.crm}"></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{/farmaceutico/editar(id=${farmaceutico.id})}">Editar</a>
+					<a class="btn btn-danger btn-sm" th:href="@{/farmaceutico/excluir(id=${farmaceutico.id})}">Excluir</a>
 					</td>
 				</tr>
 			</tbody>

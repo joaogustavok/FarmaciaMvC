@@ -44,7 +44,7 @@ public class MedicamentoController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "editar")
-	public ModelAndView salvarVacina(@Valid Medicamento medicamento,  BindingResult bindingResult) {
+	public ModelAndView salvarMedicamento(@Valid Medicamento medicamento,  BindingResult bindingResult) {
 		
 		ModelAndView mv = new ModelAndView("medicamento/form.html");
 		

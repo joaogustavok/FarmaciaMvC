@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+    </script>
+    <div class="alert alert-primary" th:if="${mensagem != null}"
+         th:text="${mensagem}"></div>
+    <div class="card">
+        <div class="card-header">
+            <p class="text-primary">Nova Compra</p>
+        </div>
+        <div class="card-body">
+            <form method="POST" th:object="${compra}"
+                  th:action="@{/compra/editar}">
+                <input type="hidden" th:field="*{id}"></input>
+                <div class="form-group mb-3">
+                    <label for="nome">Cliente:</label> <select class="form-select"
+                                                               th:field="*{cliente}">
+                    <option th:each="cliente: ${listaClientes}" th:value="${cliente.id}"
+                            th:text="${cliente.nome}"></option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="farmaceutico">Farmacêutico:</label> <select class="form-select"
+                                                                            th:field="*{farmaceutico}">
+                    <option th:each="farmaceutico: ${listaFarmaceuticos}" th:value="${farmaceutico.id}"
+                            th:text="${farmaceutico.nome}"></option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="dataCompra">Data Compra:</label> <input
+                        class="form-control" type="date" th:field="*{dataCompra}"
+                        required></input>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('dataCompra')}"
+                         th:errors="*{dataCompra}"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="medicamento">Medicamento:</label> <select class="form-select"
+                                                                          th:field="*{medicamento}">
+                    <option th:each="medicamento: ${listaMedicamentos}" th:value="${medicamento.id}"
+                            th:text="${medicamento.nome}"></option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="quantidade">Quantidade:</label> <input
+                        class="form-control" type="number" th:field="*{quantidade}" required></input>
+                    <div class="text-danger" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

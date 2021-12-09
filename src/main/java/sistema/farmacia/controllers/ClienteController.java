@@ -30,7 +30,6 @@ public class ClienteController {
 		if(id==null) {
 			cliente = new Cliente();
 		} else {
-			
 			try {
 				cliente = clienteService.obterCliente(id);
 			} catch (Exception e) {
@@ -44,7 +43,7 @@ public class ClienteController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "editar")
-	public ModelAndView salvarVacina(@Valid Cliente cliente,  BindingResult bindingResult) {
+	public ModelAndView salvarCliente(@Valid Cliente cliente,  BindingResult bindingResult) {
 		
 		ModelAndView mv = new ModelAndView("cliente/form.html");
 		

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+    <div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
+        Nenhuma Compra Cadastrada.
+    </div>
+    <div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
+    </div>
+    <div th:if="${not #lists.isEmpty(lista)}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Farmacêutico</th>
+                <th>Medicamento</th>
+                <th>Quantidade</th>
+                <th>Valor Unidade</th>
+                <th>Total</th>
+                <th>Opções</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="compra:${lista}">
+                <td th:text="${compra.id}"></td>
+                <td th:text="${#dates.format(compra.dataCompra, 'dd/MM/yyyy')}"></td>
+                <td th:text="${compra.cliente.nome}"></td>
+                <td th:text="${compra.farmaceutico.nome}"></td>
+                <td th:text="${compra.medicamento.nome}"></td>
+                <td th:text="${compra.quantidade}"></td>
+                <td th:text="${compra.medicamento.preco}"></td>
+                <td th:text="${compra.medicamento.preco * compra.quantidade}"></td>
+                <td>
+                    <a class="btn btn-danger btn-sm" th:href="@{/compra/excluir(id=${compra.id})}">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>
